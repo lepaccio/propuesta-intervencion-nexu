@@ -56,7 +56,7 @@
   .flow-head h2{font-size:17px;font-weight:800;letter-spacing:-.01em;white-space:nowrap}
   .flow-head .ln{flex:1;height:1px;background:var(--border)}
   .flow-head .leg{font-size:12px;color:var(--ink-3);font-weight:600;white-space:nowrap}
-  .flow-grid{grid-column:span 12;display:grid;grid-template-columns:repeat(7,1fr);gap:16px}
+  .flow-grid{grid-column:span 12;display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
   .gband{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:9px 10px;font-size:11px;font-weight:700;color:var(--ink-2);display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;line-height:1.2}
   .gband small{font-weight:600;color:var(--ink-3);font-size:9.5px}
   .gband.g4{grid-column:span 4;background:var(--primary-50);border-color:var(--primary-100);color:var(--primary-700)}
@@ -204,37 +204,9 @@
   <div class="flow-grid">
 
     <!-- banda de agrupación: 4 pasos, donde el Paso 4 son 4 pantallas -->
-    <div class="gband">Paso 2 · Identidad</div>
     <div class="gband">Paso 3 · Domicilio</div>
     <div class="gband g4">Paso 4 · Fuente de ingresos <small>· 4 pantallas</small></div>
     <div class="gband">Después · Confirmación</div>
-
-  <!-- PASO 2 · IDENTIDAD -->
-  <div class="tile phone-tile">
-    <div class="phone">
-      <div class="statusbar"><span>9:41</span><span class="icns"><svg width="14" height="9" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg width="18" height="9" viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="2" width="18" height="8" rx="2"/><rect x="21" y="4" width="2" height="4" rx="1" fill="currentColor"/></svg></span></div>
-      <div class="navrow"><span class="back">‹</span><div class="progress-wrap"><div class="progress-label">Paso 2 de 4</div><div class="progress-track"><div class="progress-fill" style="width:50%"></div></div></div></div>
-      <div class="screen">
-        <div class="s-title">Validación de identidad</div>
-        <div class="s-sub">Estás a 3 pasos de terminar tu solicitud.</div>
-        <div class="steplist">
-          <div class="stp"><span class="mk on"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Datos personales</div>
-          <div class="stp"><span class="mk now"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="7"/></svg></span>Identidad<span class="now-tag">AHORA</span></div>
-          <div class="stp dim"><span class="mk off"></span>Domicilio</div>
-          <div class="stp dim"><span class="mk off"></span>Ingresos</div>
-        </div>
-        <div class="btn">Continuar</div>
-      </div>
-    </div>
-    <div class="pmeta">
-      <div class="chip">Identidad</div>
-      <div class="cloud">
-        <div class="row"><span class="k b">COM-B</span><span class="v">Capacidad psicológica</span></div>
-        <div class="row"><span class="k s">Sesgo</span><span class="v">Aversión a la pérdida — no querer perder lo avanzado</span></div>
-        <div class="row"><span class="k p">Palanca</span><span class="v">Progreso visible + compromiso</span></div>
-      </div>
-    </div>
-  </div>
 
   <!-- PASO 3 · DOMICILIO -->
   <div class="tile phone-tile">
