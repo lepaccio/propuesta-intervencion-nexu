@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propuesta de intervención · Onboarding Nexu parte 2 · Grupo 4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --primary:#5538E5;--primary-700:#4226C4;--primary-100:#E3DCFB;--primary-50:#F1EDFE;
+    --blue:#2563EB;--blue-50:#EAF2FF;--blue-100:#D5E6FF;
+    --ink:#1B1A2E;--ink-2:#6B6A82;--ink-3:#9C9BB0;
+    --surface:#F6F5FB;--surface-2:#FBFBFE;--border:#E8E6F2;--phone-border:#E2E0EE;
+    --shadow:0 10px 30px rgba(27,26,46,.10);--shadow-sm:0 4px 14px rgba(27,26,46,.07);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',-apple-system,'Segoe UI',Roboto,sans-serif;background:#EDECF4;color:var(--ink);width:max-content;min-width:100%;padding:20px;-webkit-font-smoothing:antialiased}
+  .frame{width:1700px;background:#EDECF4;padding:8px}
+
+  .bento{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;grid-auto-flow:row}
+  .tile{background:#fff;border:1px solid var(--border);border-radius:24px;padding:26px;box-shadow:var(--shadow-sm)}
+  .tile.surface{background:var(--surface);box-shadow:none}
+  .tile.primary{background:linear-gradient(150deg,var(--primary),#6B4EF0);color:#fff;border-color:transparent}
+  .tile.ink{background:var(--ink);color:#fff;border-color:transparent}
+  .c8{grid-column:span 8}.c4{grid-column:span 4}.c2{grid-column:span 2}.c12{grid-column:span 12}
+  .r2{grid-row:span 2}
+  .eyebrow{font-size:11px;letter-spacing:.16em;font-weight:700;text-transform:uppercase}
+
+  .hero{display:flex;flex-direction:column;justify-content:center}
+  .hero .eyebrow{color:var(--primary)}
+  .hero h1{font-size:38px;font-weight:800;letter-spacing:-.025em;line-height:1.05;margin:10px 0 12px}
+  .hero p{font-size:15.5px;color:var(--ink-2);font-weight:500;max-width:640px;line-height:1.45}
+  .hero p b{color:var(--ink);font-weight:700}
+  .tags{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}
+  .tag{font-size:12px;font-weight:600;background:var(--surface);border:1px solid var(--border);color:var(--ink-2);padding:6px 13px;border-radius:20px}
+  .tag.solid{background:var(--primary-50);border-color:var(--primary-100);color:var(--primary-700)}
+
+  .diag .eyebrow{color:var(--ink-3)}
+  .diag-top{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+  .diag-ico{width:42px;height:42px;border-radius:12px;background:#fff;border:1px solid var(--border);display:grid;place-items:center;color:var(--primary);flex:none}
+  .diag ul{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:18px}
+  .diag li{font-size:13.5px;color:var(--ink);padding-left:20px;position:relative;font-weight:500;line-height:1.4}
+  .diag li::before{content:"";position:absolute;left:2px;top:7px;width:7px;height:7px;border-radius:50%;background:var(--primary)}
+  .root-cause{margin-top:auto;background:#fff;border:1px solid var(--primary-100);color:var(--primary-700);font-weight:700;font-size:13px;padding:12px 14px;border-radius:12px;display:flex;align-items:center;gap:8px;line-height:1.3}
+
+  .kpi{display:flex;flex-direction:column;justify-content:center}
+  .kpi .eyebrow{opacity:.7}
+  .kpi .big{font-size:42px;font-weight:800;letter-spacing:-.02em;margin:8px 0 6px;line-height:1}
+  .kpi .big .arrow{opacity:.55;margin:0 6px;font-weight:600}
+  .kpi .ksub{font-size:13px;opacity:.85;font-weight:500;line-height:1.35}
+  .kpi.ink .big{font-size:27px;line-height:1.1;letter-spacing:-.01em}
+
+  .flow-head{grid-column:span 12;display:flex;align-items:center;gap:16px;padding:6px 4px 0}
+  .flow-head h2{font-size:17px;font-weight:800;letter-spacing:-.01em;white-space:nowrap}
+  .flow-head .ln{flex:1;height:1px;background:var(--border)}
+  .flow-head .leg{font-size:12px;color:var(--ink-3);font-weight:600;white-space:nowrap}
+  .flow-grid{grid-column:span 12;display:grid;grid-template-columns:repeat(7,1fr);gap:16px}
+  .gband{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:9px 10px;font-size:11px;font-weight:700;color:var(--ink-2);display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;line-height:1.2}
+  .gband small{font-weight:600;color:var(--ink-3);font-size:9.5px}
+  .gband.g4{grid-column:span 4;background:var(--primary-50);border-color:var(--primary-100);color:var(--primary-700)}
+
+  .phone-tile{padding:14px 12px;display:flex;flex-direction:column;align-items:center;background:var(--surface);border-radius:24px;border:1px solid var(--border)}
+  .phone{width:100%;max-width:198px;height:392px;background:#fff;border:1px solid var(--phone-border);border-radius:28px;box-shadow:var(--shadow-sm);padding:10px 12px;display:flex;flex-direction:column;overflow:hidden}
+  .statusbar{display:flex;justify-content:space-between;align-items:center;font-size:10px;font-weight:600;padding:2px 4px 6px}
+  .statusbar .icns{display:flex;gap:3px;align-items:center}
+  .navrow{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+  .navrow .back{color:var(--ink-2);font-size:14px;line-height:1}
+  .progress-wrap{flex:1;display:flex;flex-direction:column;gap:3px}
+  .progress-label{font-size:9px;color:var(--ink-3);font-weight:600;text-align:center}
+  .progress-track{height:4px;background:var(--surface);border-radius:4px;overflow:hidden}
+  .progress-fill{height:100%;background:var(--primary);border-radius:4px}
+  .screen{flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 2px}
+  .s-title{font-size:14px;font-weight:700;line-height:1.2;letter-spacing:-.01em}
+  .s-sub{font-size:10.5px;color:var(--ink-2);margin-top:5px;line-height:1.35;font-weight:500}
+  .steplist{display:flex;flex-direction:column;gap:8px;margin-top:13px}
+  .stp{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:500}
+  .stp .mk{width:16px;height:16px;border-radius:50%;flex:none;display:grid;place-items:center}
+  .stp .mk.on{background:var(--primary);color:#fff}
+  .stp .mk.now{background:var(--primary-50);border:1.5px solid var(--primary);color:var(--primary)}
+  .stp .mk.off{border:1.5px solid var(--border)}
+  .stp .now-tag{margin-left:auto;font-size:8.5px;color:var(--primary);font-weight:700}
+  .stp.dim{color:var(--ink-3)}
+  .docchip{display:flex;align-items:center;gap:8px;margin-top:12px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 9px;font-size:10px;font-weight:600}
+  .docchip .di{color:var(--primary);flex:none}
+  .docchip .src{color:var(--ink-3);font-weight:500;margin-left:auto}
+  .input{margin-top:12px;border:1.5px solid var(--phone-border);border-radius:10px;padding:9px 11px;font-size:12px;color:var(--ink-3);font-weight:500;display:flex;align-items:center;gap:8px}
+  .input .cur{background:var(--primary-50);color:var(--primary-700);font-weight:700;font-size:10px;padding:2px 7px;border-radius:6px}
+  .opt{display:flex;align-items:center;gap:9px;margin-top:8px;border:1.5px solid var(--border);border-radius:10px;padding:9px 10px;font-size:11px;font-weight:600}
+  .opt .lt{width:16px;height:16px;border-radius:5px;background:var(--surface);display:grid;place-items:center;font-size:9px;color:var(--ink-3);font-weight:700;flex:none}
+  .opt.sel{border-color:var(--primary);background:var(--primary-50);color:var(--primary-700)}
+  .opt.sel .lt{background:var(--primary);color:#fff}
+  .helper{display:flex;gap:7px;align-items:flex-start;margin-top:11px;font-size:9.5px;color:var(--ink-2);line-height:1.35;font-weight:500}
+  .helper.hl{color:var(--primary-700);font-weight:600}
+  .helper .hicon{flex:none;color:var(--primary);margin-top:1px}
+  .center-ico{width:46px;height:46px;border-radius:50%;margin:6px auto 10px;display:grid;place-items:center}
+  .center-ico.ok{background:var(--primary-50);color:var(--primary)}
+  .ctr{text-align:center}
+  .btn{margin-top:18px;background:var(--primary);color:#fff;font-weight:700;font-size:12px;text-align:center;padding:11px;border-radius:11px}
+  .btn.secondary{background:#fff;color:var(--primary);border:1.5px solid var(--primary-100);margin-top:8px}
+  .infobox{margin-top:12px;background:var(--blue-50);border:1px solid var(--blue-100);border-radius:10px;padding:9px 10px;font-size:9.5px;color:#1E40AF;font-weight:600;line-height:1.35;display:flex;gap:7px;align-items:flex-start}
+  .infobox .ii{flex:none;color:var(--blue);margin-top:1px}
+
+  .pmeta{width:100%;max-width:198px;display:flex;flex-direction:column;align-items:center}
+  .chip{margin-top:14px;background:var(--ink);color:#fff;font-size:11px;font-weight:600;padding:6px 11px;border-radius:20px;text-align:center}
+  .comb{margin-top:8px;font-size:9.5px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.02em}
+  .comb.cap{background:var(--blue-50);color:var(--blue);border:1px solid var(--blue-100)}
+  .comb.mot{background:var(--primary-50);color:var(--primary-700);border:1px solid var(--primary-100)}
+  .note{margin-top:9px;width:100%;border:1.3px dashed var(--primary-100);background:#fff;border-radius:12px;padding:9px 10px;display:flex;gap:7px;align-items:flex-start;font-size:10.5px;color:var(--primary-700);font-weight:600;line-height:1.3}
+  .note .bulb{flex:none;color:var(--primary)}
+  /* nube de análisis: sesgo + palanca, con flecha al teléfono */
+  .cloud{position:relative;margin-top:18px;width:100%;background:#fff;border:1px solid var(--border);border-radius:14px;padding:11px 12px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:7px}
+  .cloud::before{content:"";position:absolute;top:-6px;left:30px;width:11px;height:11px;background:#fff;border-left:1px solid var(--border);border-top:1px solid var(--border);transform:rotate(45deg)}
+  .cloud .row{display:flex;gap:7px;align-items:flex-start}
+  .cloud .k{font-size:8px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:3px 6px;border-radius:5px;flex:none;line-height:1.2}
+  .cloud .k.b{background:var(--surface);color:var(--ink-2);border:1px solid var(--border)}
+  .cloud .k.s{background:#FFF1E6;color:#C2410C}
+  .cloud .k.p{background:var(--primary-50);color:var(--primary-700)}
+  .cloud .v{color:var(--ink);font-weight:600;font-size:9.5px;line-height:1.32}
+
+  .tbl-tile{padding:0;overflow:hidden}
+  .tbl-head{display:flex;align-items:center;gap:10px;padding:20px 24px 14px}
+  .tbl-head .eyebrow{color:var(--ink-3)}
+  .tbl-head .th{width:30px;height:30px;border-radius:9px;background:var(--primary-50);color:var(--primary);display:grid;place-items:center}
+  table{width:100%;border-collapse:collapse;font-size:12px}
+  thead th{background:var(--surface);text-align:left;font-weight:700;color:var(--ink-2);padding:10px 24px;font-size:10px;letter-spacing:.04em;text-transform:uppercase}
+  tbody td{padding:12px 24px;border-top:1px solid var(--border);color:var(--ink);vertical-align:middle;font-weight:500;line-height:1.35}
+  tbody td:first-child{font-weight:700}
+  .mcell{display:flex;align-items:center;gap:9px}
+  .mcell .mi{width:26px;height:26px;border-radius:7px;background:var(--primary-50);color:var(--primary);display:grid;place-items:center;flex:none}
+  td.ico-int{color:var(--primary-700);font-weight:600}
+  .bpill{font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap}
+  .bpill.cap{background:var(--blue-50);color:var(--blue)}
+  .bpill.mot{background:var(--primary-50);color:var(--primary-700)}
+
+  .impact .eyebrow{color:var(--ink-3)}
+  .impact-head{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+  .impact-head .th{width:34px;height:34px;border-radius:10px;background:#fff;border:1px solid var(--border);color:var(--primary);display:grid;place-items:center}
+  .impact-item{display:flex;align-items:center;gap:13px;padding:14px 0;border-bottom:1px solid var(--border)}
+  .impact-item:last-child{border-bottom:none;padding-bottom:0}
+  .impact-item .ii{width:32px;height:32px;border-radius:50%;background:#fff;border:1.5px solid var(--primary-100);color:var(--primary);display:grid;place-items:center;flex:none}
+  .impact-item span{font-size:13.5px;font-weight:600;line-height:1.3}
+
+  .footer{grid-column:span 12;display:flex;align-items:center;gap:12px;padding:6px 6px 0}
+  .foot-badge{width:28px;height:28px;border-radius:8px;background:var(--primary);color:#fff;display:grid;place-items:center;font-weight:800;font-size:15px}
+  .footer .ftxt{font-size:13px;color:var(--ink-2);font-weight:500}
+  .footer .grp{margin-left:auto;font-size:12px;color:var(--ink-3);font-weight:600}
+  svg{display:block}
+</style>
+</head>
+<body>
+<div class="frame">
+ <div class="bento">
+
+  <!-- HERO -->
+  <div class="tile c8 hero">
+    <div class="eyebrow">Propuesta de intervención · COM-B + CREATE</div>
+    <h1>Segunda parte del onboarding</h1>
+    <p><b>Objetivo:</b> reducir el abandono en la validación de <b>identidad, domicilio e ingresos</b> resolviendo las dudas que hoy frenan al usuario justo antes de dar datos sensibles.</p>
+    <div class="tags">
+      <span class="tag solid">Grupo 4 · Repensar</span>
+      <span class="tag">Ruta real corregida</span>
+      <span class="tag">Cada pantalla → 1 barrera COM-B</span>
+    </div>
+  </div>
+
+  <!-- DIAGNÓSTICO (tall) -->
+  <div class="tile surface c4 r2 diag" style="display:flex;flex-direction:column">
+    <div class="diag-top">
+      <div class="diag-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+      <div class="eyebrow">Diagnóstico de la ruta actual</div>
+    </div>
+    <ul>
+      <li>No sabe <b>cuántos pasos faltan</b> ni qué le pedirán después.</li>
+      <li>Da <b>datos sensibles</b> (domicilio, empresa, ingresos) sin saber para qué se usan ni si <b>afectan su acceso</b>.</li>
+      <li>Dudas sin resolver: origen del documento, si contactan a su empresa, qué moneda, qué incluir.</li>
+      <li>No conoce el <b>después</b>: horario de contacto y qué pasa si no contesta el 1er intento.</li>
+    </ul>
+    <div class="root-cause"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 3v18M5 8l7-5 7 5"/></svg>Incertidumbre + desconfianza &gt; intención de completar</div>
+  </div>
+
+  <!-- KPI A (primary) -->
+  <div class="tile primary c4 kpi">
+    <div class="eyebrow">Meta de completación</div>
+    <div class="big">27%<span class="arrow">→</span>40%</div>
+    <div class="ksub">de los leads completan la validación dentro de las primeras 24 h.</div>
+  </div>
+
+  <!-- KPI B (ink) -->
+  <div class="tile ink c4 kpi ink">
+    <div class="eyebrow">Barrera dominante · COM-B</div>
+    <div class="big">Motivación<br>reflexiva</div>
+    <div class="ksub">desconfianza post-rechazo al entregar datos sensibles: el cuello que corrige esta ruta.</div>
+  </div>
+
+  <!-- FLOW HEADING -->
+  <div class="flow-head">
+    <h2>Ruta corregida — parte 2 del onboarding</h2>
+    <div class="ln"></div>
+    <div class="leg">por pantalla: barrera COM-B · sesgo · palanca</div>
+  </div>
+
+  <div class="flow-grid">
+
+    <!-- banda de agrupación: 4 pasos, donde el Paso 4 son 4 pantallas -->
+    <div class="gband">Paso 2 · Identidad</div>
+    <div class="gband">Paso 3 · Domicilio</div>
+    <div class="gband g4">Paso 4 · Fuente de ingresos <small>· 4 pantallas</small></div>
+    <div class="gband">Después · Confirmación</div>
+
+  <!-- PASO 2 · IDENTIDAD -->
+  <div class="tile phone-tile">
+    <div class="phone">
+      <div class="statusbar"><span>9:41</span><span class="icns"><svg width="14" height="9" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg width="18" height="9" viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="2" width="18" height="8" rx="2"/><rect x="21" y="4" width="2" height="4" rx="1" fill="currentColor"/></svg></span></div>
+      <div class="navrow"><span class="back">‹</span><div class="progress-wrap"><div class="progress-label">Paso 2 de 4</div><div class="progress-track"><div class="progress-fill" style="width:50%"></div></div></div></div>
+      <div class="screen">
+        <div class="s-title">Validación de identidad</div>
+        <div class="s-sub">Estás a 3 pasos de terminar tu solicitud.</div>
+        <div class="steplist">
+          <div class="stp"><span class="mk on"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Datos personales</div>
+          <div class="stp"><span class="mk now"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="7"/></svg></span>Identidad<span class="now-tag">AHORA</span></div>
+          <div class="stp dim"><span class="mk off"></span>Domicilio</div>
+          <div class="stp dim"><span class="mk off"></span>Ingresos</div>
+        </div>
+        <div class="btn">Continuar</div>
+      </div>
+    </div>
+    <div class="pmeta">
+      <div class="chip">Identidad</div>
+      <div class="cloud">
+        <div class="row"><span class="k b">COM-B</span><span class="v">Capacidad psicológica</span></div>
+        <div class="row"><span class="k s">Sesgo</span><span class="v">Aversión a la pérdida — no querer perder lo avanzado</span></div>
+        <div class="row"><span class="k p">Palanca</span><span class="v">Progreso visible + compromiso</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 3 · DOMICILIO -->
+  <div class="tile phone-tile">
+    <div class="phone">
+      <div class="statusbar"><span>9:41</span><span class="icns"><svg width="14" height="9" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg width="18" height="9" viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="2" width="18" height="8" rx="2"/><rect x="21" y="4" width="2" height="4" rx="1" fill="currentColor"/></svg></span></div>
+      <div class="navrow"><span class="back">‹</span><div class="progress-wrap"><div class="progress-label">Paso 3 de 4</div><div class="progress-track"><div class="progress-fill" style="width:75%"></div></div></div></div>
+      <div class="screen">
+        <div class="s-title">Confirma tu domicilio</div>
+        <div class="docchip"><svg class="di" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>recibo-luz.pdf<span class="src">de tu comprobante</span></div>
+        <div class="s-sub">Lo tomamos del comprobante que ya subiste. ¿Vives en esta dirección?</div>
+        <div class="btn">Sí, vivo aquí</div>
+        <div class="btn secondary">Es otro domicilio</div>
+        <div class="helper hl"><svg class="hicon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>Si es fiscal o de un familiar, te pediremos 1 comprobante extra — no afecta tu solicitud.</div>
+      </div>
+    </div>
+    <div class="pmeta">
+      <div class="chip">Domicilio</div>
+      <div class="cloud">
+        <div class="row"><span class="k b">COM-B</span><span class="v">Cap. ps. + Mot. reflexiva</span></div>
+        <div class="row"><span class="k s">Sesgo</span><span class="v">Status quo — la ruta por defecto es la esperada</span></div>
+        <div class="row"><span class="k p">Palanca</span><span class="v">Opción por defecto + transparencia del origen</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 4a · TIPO DE FUENTE -->
+  <div class="tile phone-tile">
+    <div class="phone">
+      <div class="statusbar"><span>9:41</span><span class="icns"><svg width="14" height="9" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg width="18" height="9" viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="2" width="18" height="8" rx="2"/><rect x="21" y="4" width="2" height="4" rx="1" fill="currentColor"/></svg></span></div>
+      <div class="navrow"><span class="back">‹</span><div class="progress-wrap"><div class="progress-label">Paso 4 de 4 · 1/4</div><div class="progress-track"><div class="progress-fill" style="width:81%"></div></div></div></div>
+      <div class="screen">
+        <div class="s-title">¿Cuál es tu fuente de ingresos?</div>
+        <div class="opt sel"><span class="lt">A</span>Asalariado</div>
+        <div class="opt"><span class="lt">B</span>Independiente</div>
+        <div class="opt"><span class="lt">C</span>Pensionado / Jubilado</div>
+        <div class="helper hl"><svg class="hicon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>Nos ayuda a calcular tu capacidad de pago. No afecta tu acceso al financiamiento.</div>
+        <div class="btn">Continuar</div>
+      </div>
+    </div>
+    <div class="pmeta">
+      <div class="chip">Tipo de fuente</div>
+      <div class="cloud">
+        <div class="row"><span class="k b">COM-B</span><span class="v">Motivación reflexiva</span></div>
+        <div class="row"><span class="k s">Sesgo</span><span class="v">Aversión a la pérdida — temen que el dato les cierre el acceso</span></div>
+        <div class="row"><span class="k p">Palanca</span><span class="v">Reencuadre — "no afecta tu acceso"</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 4b · CONFIRMAR EMPRESA -->
+  <div class="tile phone-tile">
+    <div class="phone">
+      <div class="statusbar"><span>9:41</span><span class="icns"><svg width="14" height="9" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg width="18" height="9" viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="2" width="18" height="8" rx="2"/><rect x="21" y="4" width="2" height="4" rx="1" fill="currentColor"/></svg></span></div>
+      <div class="navrow"><span class="back">‹</span><div class="progress-wrap"><div class="progress-label">Paso 4 de 4 · 2/4</div><div class="progress-track"><div class="progress-fill" style="width:88%"></div></div></div></div>
+      <div class="screen">
+        <div class="s-title">¿En qué empresa trabajas?</div>
+        <div class="input">Nombre de la empresa</div>
+        <div class="infobox"><svg class="ii" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>No contactamos a tu empresa sin tu permiso. Si cambias de trabajo, tu solicitud sigue válida.</div>
+        <div class="btn">Continuar</div>
+      </div>
+    </div>
+    <div class="pmeta">
+      <div class="chip">Confirmar empresa</div>
+      <div class="cloud">
+        <div class="row"><span class="k b">COM-B</span><span class="v">Mot. reflexiva (confianza)</span></div>
+        <div class="row"><span class="k s">Sesgo</span><span class="v">Confirmación — espera salir perjudicado (viene de un rechazo)</span></div>
+        <div class="row"><span class="k p">Palanca</span><span class="v">Señal de control + transparencia</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 4c · INGRESO NETO -->
+  <div class="tile phone-tile">
+    <div class="phone">
+      <div class="statusbar"><span>9:41</span><span class="icns"><svg width="14" height="9" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg width="18" height="9" viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="2" width="18" height="8" rx="2"/><rect x="21" y="4" width="2" height="4" rx="1" fill="currentColor"/></svg></span></div>
+      <div class="navrow"><span class="back">‹</span><div class="progress-wrap"><div class="progress-label">Paso 4 de 4 · 3/4</div><div class="progress-track"><div class="progress-fill" style="width:94%"></div></div></div></div>
+      <div class="screen">
+        <div class="s-title">¿Cuánto es tu ingreso neto mensual?</div>
+        <div class="input amount"><span class="cur">MXN ▾</span>$ 0.00</div>
+        <div class="helper"><svg class="hicon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Si varía o eres independiente, pon un promedio.</div>
+        <div class="infobox"><svg class="ii" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>Lo verificamos con tu estado de cuenta al final del proceso.</div>
+        <div class="btn">Continuar</div>
+      </div>
+    </div>
+    <div class="pmeta">
+      <div class="chip">Ingreso neto</div>
+      <div class="cloud">
+        <div class="row"><span class="k b">COM-B</span><span class="v">Capacidad psicológica</span></div>
+        <div class="row"><span class="k s">Sesgo</span><span class="v">Sobrecarga de opciones — no sabe qué poner y se frena</span></div>
+        <div class="row"><span class="k p">Palanca</span><span class="v">Facilidad de acción + costo diferido</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DESPUÉS · REFERENCIAS -->
+  <div class="tile phone-tile">
+    <div class="phone">
+      <div class="statusbar"><span>9:41</span><span class="icns"><svg width="14" height="9" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg width="18" height="9" viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="2" width="18" height="8" rx="2"/><rect x="21" y="4" width="2" height="4" rx="1" fill="currentColor"/></svg></span></div>
+      <div class="navrow"><span class="back">‹</span><div class="progress-wrap"><div class="progress-label">Paso 4 de 4 · 4/4</div><div class="progress-track"><div class="progress-fill" style="width:100%"></div></div></div></div>
+      <div class="screen">
+        <div class="s-title">Agrega tus referencias</div>
+        <div class="s-sub">2 familiares y 2 personales.</div>
+        <div class="input" style="margin-top:10px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>Nombre · teléfono</div>
+        <div class="infobox"><svg class="ii" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg>Las contactamos por WhatsApp solo para confirmar que te conocen. No compartimos tu info de crédito.</div>
+        <div class="helper hl"><svg class="hicon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>Ten a la mano sus números antes de empezar.</div>
+        <div class="btn">Guardar</div>
+      </div>
+    </div>
+    <div class="pmeta">
+      <div class="chip">Referencias</div>
+      <div class="cloud">
+        <div class="row"><span class="k b">COM-B</span><span class="v">Mot. reflexiva (terceros)</span></div>
+        <div class="row"><span class="k s">Sesgo</span><span class="v">Aversión a la pérdida — riesgo social de exponer a sus contactos</span></div>
+        <div class="row"><span class="k p">Palanca</span><span class="v">Transparencia del uso + prueba social</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DESPUÉS · CONFIRMACIÓN -->
+  <div class="tile phone-tile">
+    <div class="phone">
+      <div class="statusbar"><span>9:41</span><span class="icns"><svg width="14" height="9" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg width="18" height="9" viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="2" width="18" height="8" rx="2"/><rect x="21" y="4" width="2" height="4" rx="1" fill="currentColor"/></svg></span></div>
+      <div class="navrow"><div class="progress-wrap"><div class="progress-label">Solicitud completa</div><div class="progress-track"><div class="progress-fill" style="width:100%"></div></div></div></div>
+      <div class="screen ctr">
+        <div class="center-ico ok"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="s-title">¡Listo, Arturo! Recibimos tu solicitud.</div>
+        <div class="infobox" style="margin-top:14px;text-align:left"><svg class="ii" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>Te llamamos en horario de oficina (L–V, 9am–6pm), dentro de 24 h.</div>
+        <div class="helper hl" style="justify-content:flex-start"><svg class="hicon" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg>Si no contestas, te escribimos por WhatsApp.</div>
+        <div class="btn">Ver estado de mi solicitud</div>
+      </div>
+    </div>
+    <div class="pmeta">
+      <div class="chip">Confirmación</div>
+      <div class="cloud">
+        <div class="row"><span class="k b">COM-B</span><span class="v">Mot. reflexiva · Experience</span></div>
+        <div class="row"><span class="k s">Sesgo</span><span class="v">Del presente — necesita recompensa y certeza ya</span></div>
+        <div class="row"><span class="k p">Palanca</span><span class="v">Reciprocidad + feedback inmediato</span></div>
+      </div>
+    </div>
+  </div>
+
+  </div><!-- /flow-grid -->
+
+  <!-- TIMING TABLE -->
+  <div class="tile c8 tbl-tile">
+    <div class="tbl-head">
+      <div class="th"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+      <div class="eyebrow">Fricción real → corrección COM-B</div>
+    </div>
+    <table>
+      <thead><tr><th>Pantalla</th><th>Fricción detectada (board)</th><th>Corrección propuesta</th><th>Barrera COM-B</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><div class="mcell"><span class="mi"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a5 5 0 0 1 5 5c0 3-5 8-5 8s-5-5-5-8a5 5 0 0 1 5-5z"/><circle cx="12" cy="7" r="1.5"/></svg></span>Identidad</div></td>
+          <td>No sabe cuántos pasos faltan</td><td class="ico-int">Barra de progreso + mapa de los 4 pasos</td><td><span class="bpill cap">Capacidad ps.</span></td>
+        </tr>
+        <tr>
+          <td><div class="mcell"><span class="mi"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span>Domicilio</div></td>
+          <td>No sabe de dónde sale el documento ni qué implica cada opción</td><td class="ico-int">Origen del comprobante + consecuencia de cada opción</td><td><span class="bpill cap">Cap. + Mot.</span></td>
+        </tr>
+        <tr>
+          <td><div class="mcell"><span class="mi"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg></span>Tipo de fuente</div></td>
+          <td>No explica por qué pide el tipo / "¿y si soy independiente?"</td><td class="ico-int">"Calcula tu capacidad de pago, no afecta tu acceso" + caso independiente</td><td><span class="bpill mot">Mot. reflexiva</span></td>
+        </tr>
+        <tr>
+          <td><div class="mcell"><span class="mi"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span>Confirmar empresa</div></td>
+          <td>Teme que contacten a su empleador / cambiar de trabajo</td><td class="ico-int">"No contactamos a tu empresa sin permiso; cambiar de trabajo no afecta"</td><td><span class="bpill mot">Mot. reflexiva</span></td>
+        </tr>
+        <tr>
+          <td><div class="mcell"><span class="mi"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>Ingreso neto</div></td>
+          <td>Moneda, qué incluir, cuándo se verifica, ¿mínimo?</td><td class="ico-int">Selector de moneda + "promedio si varía" + "se verifica al final"</td><td><span class="bpill cap">Capacidad ps.</span></td>
+        </tr>
+        <tr>
+          <td><div class="mcell"><span class="mi"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></span>Referencias</div></td>
+          <td>No sabe a quién contactan, cómo ni qué les dirán</td><td class="ico-int">"Las contactamos por WhatsApp solo para confirmar que te conocen"</td><td><span class="bpill mot">Mot. reflexiva</span></td>
+        </tr>
+        <tr>
+          <td><div class="mcell"><span class="mi"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></span>Confirmación</div></td>
+          <td>No sabe el horario de atención ni el plan B si no contestan</td><td class="ico-int">ETA + horario de oficina + WhatsApp de respaldo</td><td><span class="bpill mot">Mot. · Experience</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- IMPACTO -->
+  <div class="tile surface c4 impact">
+    <div class="impact-head">
+      <div class="th"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg></div>
+      <div class="eyebrow">Impacto esperado</div>
+    </div>
+    <div class="impact-item"><span class="ii"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><span>Menor incertidumbre del proceso <b>(capacidad)</b></span></div>
+    <div class="impact-item"><span class="ii"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><span>Más confianza para dar datos sensibles <b>(mot. reflexiva)</b></span></div>
+    <div class="impact-item"><span class="ii"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 12 15 20 7"/><polyline points="20 13 20 7 14 7"/></svg></span><span>Menos abandono por dudas sin resolver</span></div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="foot-badge">n</div>
+    <span class="ftxt">Parte 2 del onboarding · ruta real corregida con diagnóstico COM-B + CREATE · design system Nexu</span>
+    <span class="grp">Grupo 4 · Repensar — Behavioral Strategy</span>
+  </div>
+
+ </div>
+</div>
+</body>
+</html>
