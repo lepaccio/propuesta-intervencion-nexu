@@ -62,8 +62,10 @@
   .gband.g4{grid-column:span 4;background:var(--primary-50);border-color:var(--primary-100);color:var(--primary-700)}
 
   .phone-tile{padding:14px 12px;display:flex;flex-direction:column;align-items:center;background:var(--surface);border-radius:24px;border:1px solid var(--border)}
-  .phone{width:100%;max-width:198px;height:392px;background:#fff;border:1px solid var(--phone-border);border-radius:28px;box-shadow:var(--shadow-sm);padding:10px 12px;display:flex;flex-direction:column;overflow:hidden}
-  .statusbar{display:flex;justify-content:space-between;align-items:center;font-size:10px;font-weight:600;padding:2px 4px 6px}
+  .phone{position:relative;width:100%;max-width:198px;height:420px;background:#fff;border:6px solid #14121C;border-radius:42px;box-shadow:0 14px 32px rgba(20,18,28,.22);padding:11px 13px 22px;display:flex;flex-direction:column;overflow:hidden}
+  .phone::before{content:"";position:absolute;top:10px;left:50%;transform:translateX(-50%);width:62px;height:18px;background:#08070C;border-radius:999px;z-index:6}
+  .phone::after{content:"";position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:80px;height:4px;background:rgba(20,18,28,.22);border-radius:999px;z-index:6}
+  .statusbar{display:flex;justify-content:space-between;align-items:center;min-height:18px;font-size:10px;font-weight:700;padding:0 5px 8px;color:var(--ink)}
   .statusbar .icns{display:flex;gap:3px;align-items:center}
   .navrow{display:flex;align-items:center;gap:8px;margin-bottom:7px}
   .navrow .back{color:var(--ink-2);font-size:14px;line-height:1}
@@ -71,7 +73,8 @@
   .progress-label{font-size:9px;color:var(--ink-3);font-weight:600;text-align:center}
   .progress-track{height:4px;background:var(--surface);border-radius:4px;overflow:hidden}
   .progress-fill{height:100%;background:var(--primary);border-radius:4px}
-  .screen{flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 2px}
+  .screen{flex:1;display:flex;flex-direction:column;justify-content:flex-start;padding:2px 3px 0;overflow:hidden}
+  .screen.ctr{justify-content:center}
   .s-title{font-size:14px;font-weight:700;line-height:1.2;letter-spacing:-.01em}
   .s-sub{font-size:10.5px;color:var(--ink-2);margin-top:5px;line-height:1.35;font-weight:500}
   .steplist{display:flex;flex-direction:column;gap:8px;margin-top:13px}
@@ -204,15 +207,15 @@
   <div class="flow-grid">
 
     <!-- banda de agrupación: 4 pasos, donde el Paso 4 son 4 pantallas -->
-    <div class="gband">Paso 3 · Domicilio</div>
-    <div class="gband g4">Paso 4 · Fuente de ingresos <small>· 4 pantallas</small></div>
+    <div class="gband">Paso 1 · Domicilio</div>
+    <div class="gband g4">Paso 2 · Fuente de ingresos <small>· 4 pantallas</small></div>
     <div class="gband">Después · Confirmación</div>
 
   <!-- PASO 3 · DOMICILIO -->
   <div class="tile phone-tile">
     <div class="phone">
       <div class="statusbar"><span>9:41</span><span class="icns"><svg width="14" height="9" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg width="18" height="9" viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="2" width="18" height="8" rx="2"/><rect x="21" y="4" width="2" height="4" rx="1" fill="currentColor"/></svg></span></div>
-      <div class="navrow"><span class="back">‹</span><div class="progress-wrap"><div class="progress-label">Paso 3 de 4</div><div class="progress-track"><div class="progress-fill" style="width:75%"></div></div></div></div>
+      <div class="navrow"><span class="back">‹</span><div class="progress-wrap"><div class="progress-label">Paso 1 de 2</div><div class="progress-track"><div class="progress-fill" style="width:50%"></div></div></div></div>
       <div class="screen">
         <div class="s-title">Confirma tu domicilio</div>
         <div class="docchip"><svg class="di" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>recibo-luz.pdf<span class="src">de tu comprobante</span></div>
@@ -236,7 +239,7 @@
   <div class="tile phone-tile">
     <div class="phone">
       <div class="statusbar"><span>9:41</span><span class="icns"><svg width="14" height="9" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg width="18" height="9" viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="2" width="18" height="8" rx="2"/><rect x="21" y="4" width="2" height="4" rx="1" fill="currentColor"/></svg></span></div>
-      <div class="navrow"><span class="back">‹</span><div class="progress-wrap"><div class="progress-label">Paso 4 de 4 · 1/4</div><div class="progress-track"><div class="progress-fill" style="width:81%"></div></div></div></div>
+      <div class="navrow"><span class="back">‹</span><div class="progress-wrap"><div class="progress-label">Paso 2 de 2 · 1/4</div><div class="progress-track"><div class="progress-fill" style="width:60%"></div></div></div></div>
       <div class="screen">
         <div class="s-title">¿Cuál es tu fuente de ingresos?</div>
         <div class="opt sel"><span class="lt">A</span>Asalariado</div>
@@ -260,7 +263,7 @@
   <div class="tile phone-tile">
     <div class="phone">
       <div class="statusbar"><span>9:41</span><span class="icns"><svg width="14" height="9" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg width="18" height="9" viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="2" width="18" height="8" rx="2"/><rect x="21" y="4" width="2" height="4" rx="1" fill="currentColor"/></svg></span></div>
-      <div class="navrow"><span class="back">‹</span><div class="progress-wrap"><div class="progress-label">Paso 4 de 4 · 2/4</div><div class="progress-track"><div class="progress-fill" style="width:88%"></div></div></div></div>
+      <div class="navrow"><span class="back">‹</span><div class="progress-wrap"><div class="progress-label">Paso 2 de 2 · 2/4</div><div class="progress-track"><div class="progress-fill" style="width:72%"></div></div></div></div>
       <div class="screen">
         <div class="s-title">¿En qué empresa trabajas?</div>
         <div class="input">Nombre de la empresa</div>
@@ -282,7 +285,7 @@
   <div class="tile phone-tile">
     <div class="phone">
       <div class="statusbar"><span>9:41</span><span class="icns"><svg width="14" height="9" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg width="18" height="9" viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="2" width="18" height="8" rx="2"/><rect x="21" y="4" width="2" height="4" rx="1" fill="currentColor"/></svg></span></div>
-      <div class="navrow"><span class="back">‹</span><div class="progress-wrap"><div class="progress-label">Paso 4 de 4 · 3/4</div><div class="progress-track"><div class="progress-fill" style="width:94%"></div></div></div></div>
+      <div class="navrow"><span class="back">‹</span><div class="progress-wrap"><div class="progress-label">Paso 2 de 2 · 3/4</div><div class="progress-track"><div class="progress-fill" style="width:86%"></div></div></div></div>
       <div class="screen">
         <div class="s-title">¿Cuánto es tu ingreso neto mensual?</div>
         <div class="input amount"><span class="cur">MXN ▾</span>$ 0.00</div>
@@ -305,7 +308,7 @@
   <div class="tile phone-tile">
     <div class="phone">
       <div class="statusbar"><span>9:41</span><span class="icns"><svg width="14" height="9" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg width="18" height="9" viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="2" width="18" height="8" rx="2"/><rect x="21" y="4" width="2" height="4" rx="1" fill="currentColor"/></svg></span></div>
-      <div class="navrow"><span class="back">‹</span><div class="progress-wrap"><div class="progress-label">Paso 4 de 4 · 4/4</div><div class="progress-track"><div class="progress-fill" style="width:100%"></div></div></div></div>
+      <div class="navrow"><span class="back">‹</span><div class="progress-wrap"><div class="progress-label">Paso 2 de 2 · 4/4</div><div class="progress-track"><div class="progress-fill" style="width:100%"></div></div></div></div>
       <div class="screen">
         <div class="s-title">Agrega tus referencias</div>
         <div class="s-sub">2 familiares y 2 personales.</div>
